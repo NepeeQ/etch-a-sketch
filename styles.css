@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.canvas{
+    display: flex;
+    flex-direction: column;
+}
+.col{
+    border: black solid 0.5px;
+    display: flex;
+}
+
+.block{
+
+    border: black solid 0.5px ;
+    border-top: 0.25px;
+    border-bottom: 0.25px;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+}
