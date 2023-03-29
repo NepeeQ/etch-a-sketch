@@ -5,18 +5,35 @@ body{
 .canvas{
     display: flex;
     flex-direction: column;
+    width:490px;
+    border: solid ;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-evenly;
 }
 .col{
-    border: black solid 0.5px;
+    border: rgba(0, 0, 0, 0.267) solid 0.5px;
+   
     display: flex;
 }
 
 .block{
 
-    border: black solid 0.5px ;
+    border: rgba(0, 0, 0, 0.263) solid 0.5px ;
     border-top: 0.25px;
     border-bottom: 0.25px;
     background-color: white;
-    width: 40px;
-    height: 40px;
+   
+}
+
+header{
+    text-align: center;
+}
+
+.main{
+    display: flex;
+}
+
+.controls{
+    background-color: rgb(174, 209, 236);
 }

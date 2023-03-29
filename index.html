@@ -8,8 +8,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="canvas" id="canvas">
+    <header>
+        <h1>Etch-A-Sketch!</h1>
+    </header>
+    <div class="main">
+        <div class="controls">
+            
+            <input type="color" value="rgb(0,0,0)">
+            <input oninput="showVal(this.value)" value="16" id="gridsize" name="gridsize" type="range" min="16" max="96" step="16">
+            <label for="gridsize">Number of squares: <span id="squareNum">16x16</span></label>
 
+            <script>
+                const range = document.querySelector('#gridsize');
+                range.pinFormatter = (value) => {
+                  return `${value}%`;
+                };
+            </script>
+
+
+            <button id="reset">Reset</button>
+        </div>
+        <div class="canvas" id="canvas">
+
+        </div>
     </div>
     <script src="sketch.js">
 
