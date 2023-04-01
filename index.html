@@ -14,10 +14,13 @@
     <header>
         <h1>Etch-A-Sketch!</h1>
     </header>
+
     <div class = "container">
+        <p id="modeInf" style="text-align: center; margin-bottom: 20px; opacity: 0;">f</p>
         <div class = "main">
             
             <div class="controls">
+                
                 <div class="element">
                     <input id="colorPick" name="colorPick" type="color" value="rgb(0,0,0)">
                     <label for="colorPick">Color</label>
@@ -26,7 +29,8 @@
                      <input oninput="showVal(this.value)" value="16" id="gridsize" name="gridsize" type="range" min="16" max="96" step="16">
                     <label for="gridsize">Number of squares: <span id="squareNum">16x16</span></label>
                 </div>
-                <button id="reset">Reset</button>
+                <button class="control-btn" id="rainbow">Rainbow</button>
+                <button class="control-btn" id="reset">Reset</button>
             </div>
         
             <div class="canvas" id="canvas">
@@ -35,7 +39,7 @@
         </div>
     </div>
     <footer>
-        <em>Made for The Odin Project Course</em>
+        <em>Made by Nepee </em>
     </footer>
     <script src="sketch.js">
 

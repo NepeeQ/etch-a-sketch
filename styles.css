@@ -83,7 +83,7 @@ header{
     border-radius: 25%;
 }
 
-#reset{
+.control-btn{
     background-color: rgb(73, 104, 218);
     color:white;
     border: none;
@@ -96,5 +96,5 @@ footer{
     text-align: center;
     padding: 20px;
     margin-top: 30px;
-    background-color: rgb(196, 191, 191);
+    
 }
