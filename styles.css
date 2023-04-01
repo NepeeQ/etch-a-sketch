@@ -2,38 +2,67 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    --blockSize: 15px;
 }
 body{
     margin: 0;
     padding: 0;
-    font-family: Alkatra;
+    font-family: VT323;
+    background-color: rgb(195, 195, 192);
 }
 
+.panel{
+    border: solid 10px red;
+    
+    border-radius: 10px;
+    
+    
+    width: calc(var(--blockSize) * 50 + 0.5px * 2 + 1px * 14 + 10px);
+    background-color: red;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.panel h1{
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgb(225, 246, 236);
+    width: 50%;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.outside{
+    margin-right: auto;
+    margin-left: auto;
+    border: solid 2px rgb(219, 219, 5);
+   
+    border-radius: 10px;
+}
+
+
 .container{
-    margin-left: 10vw;
-    margin-right: 10vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
 }
 
 .canvas{
     display: flex;
     flex-direction: column;
-    width:490px;
-    border: solid ;
     margin-left: auto;
     margin-right: auto;
     justify-content: space-evenly;
 }
 .col{
-    border: rgba(0, 0, 0, 0.267) solid 0.5px;
-   
+    /*border: rgba(0, 0, 0, 0.267) solid 0.5px;
+   */
     display: flex;
 }
 
 .block{
 
-    border: rgba(0, 0, 0, 0.263) solid 0.5px ;
-    border-top: 0.25px;
-    border-bottom: 0.25px;
+    border: rgba(0, 0, 0, 0.150) solid 0.5px ;
     background-color: white;
    
 }
@@ -46,17 +75,18 @@ header{
 
 .main{
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
 .controls{
-    background-color: rgb(174, 209, 236);
-    width: 200px;
+    background-color: rgb(239, 243, 247);
+    margin-top: 20px;
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     text-align: center;
     border: solid 1px;
     border-radius: 5%;
