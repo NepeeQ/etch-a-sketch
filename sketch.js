@@ -1,3 +1,4 @@
+//Getting main elements
 const canvas = document.querySelector("#canvas");
 const slider = document.querySelector("#gridsize");
 const sliderLabel = document.querySelector("#squareNum");
@@ -5,18 +6,87 @@ const resetButton = document.querySelector("#reset");
 const colorPick = document.querySelector("#colorPick");
 const rainbowButton = document.querySelector("#rainbow");
 const modeInfo = document.querySelector("#modeInf");
+const panel = document.querySelector("#panel");
+const outside = document.querySelector("#outside");
+const screen = document.querySelector("#screen");
 
-const DEFAULT_GRID_SIZE = 16;
+//Setting const defaults
+const DEFAULT_GRID_SIZE = 32; //Vertical
 const DEFAULT_BLOCK_SIZE = 15;
 
+
+
+//Setting changable default 
 let currentColor = "black";
-
 let rainbowSet = false;
-
 let mousePressed = false;
 
+const menuStates = ['colorBtn', 'rainbow', 'gridPick', 'reset']
+let currentMenuState = "colorBtn";
 
-rainbowButton.addEventListener("click", function()
+//Changing menu states
+const buttons = document.querySelectorAll(".control-btn");
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+        if(menuStates.includes(buttons[i].id))
+        {
+            currentMenuState = buttons[i].id;
+            console.log(currentMenuState);
+            menuChange();
+        }
+        else{
+            return;
+        };
+    });
+}
+
+//Applying menu change
+
+function menuChange(){
+    if (currentMenuState == menuStates[0])
+    {
+        let parentDiv = colorPick.parentElement;
+        clearMenu();
+        parentDiv.style.display = "flex";
+    }
+    else if(currentMenuState == menuStates[1])
+        {
+            clearMenu();
+            modeInfo.style.display = "block";
+            rainbowModeOn();
+        }
+    else if(currentMenuState == menuStates[2])
+    {
+        let parentDiv = slider.parentElement;
+        clearMenu();
+        parentDiv.style.display = "flex";
+    }
+}
+
+function clearMenu()
+{
+    for(let i = 0; i < screen.children.length; i++)
+    {
+        screen.children[i].style.display = "none";
+    }
+    rainbowSet = false;
+    currentColor = "black";
+}
+//Function for getting the horizontal ratio using 16:9
+function getRatio(vert)
+{
+    return vert * 16 / 9;
+}
+
+//Function for calculation panel width based on grid size
+function setPanelWidth()
+{
+    panel.style.width = (outside.offsetWidth + 20) + "px" ;
+}
+
+
+function rainbowModeOn()
 {
     rainbowSet = true;
     console.log(rainbowSet);
@@ -36,7 +106,7 @@ rainbowButton.addEventListener("click", function()
     }
    
     modeInfo.style.opacity = "100%";
-} )
+} 
 
 colorPick.addEventListener("change", function()
 {
@@ -55,7 +125,7 @@ resetButton.addEventListener("click", function(){
 
 
 function showVal(val){
-    sliderLabel.textContent = val + "x" + val;
+    sliderLabel.textContent = val + "x" + (val * 9 / 16);
     clearGrid();
     createGrid(val);
 }
@@ -69,34 +139,34 @@ function clearGrid()
 
 function createGrid(num)
 {
-    for (let i = 0; i < 32; i++)
+    for (let i = 0; i < num; i++)
     {
         const column = document.createElement("div");
         column.classList.add("col");
         canvas.appendChild(column);
-        for (let j = 0; j < 50; j++)
+        for (let j = 0; j < getRatio(num); j++)
         {
             const block = document.createElement("div");
             block.classList.add("block");
-            block.style.width = (DEFAULT_BLOCK_SIZE * 16 / num ) + "px";
-            block.style.height = (DEFAULT_BLOCK_SIZE * 16 / num) + "px";
+            block.style.width = (DEFAULT_BLOCK_SIZE * DEFAULT_GRID_SIZE / num ) + "px";
+            block.style.height = (DEFAULT_BLOCK_SIZE * DEFAULT_GRID_SIZE / num) + "px";
             if(i == 0)
             {
                 block.style.borderTop = "0px"
                 if(j == 0)block.style.borderRadius = "7px 0 0 0";
-                if(j == 49)block.style.borderRadius = "0 7px 0 0";
+                if(j == getRatio(num) - 1)block.style.borderRadius = "0 7px 0 0";
             }
-            else if(i == 31)
+            else if(i == num - 1)
             {
                 block.style.borderBottom = "0px"
                 if(j == 0)block.style.borderRadius = "0 0 0 7px";
-                if(j == 49)block.style.borderRadius = "0 0 7px 0";
+                if(j == getRatio(num)- 1)block.style.borderRadius = "0 0 7px 0";
             }
             if(j == 0)
             {
                 block.style.borderLeft = "0px"
             }
-            else if(j == 49){
+            else if(j == getRatio(num) - 1){
                 block.style.borderRight = "0px"
             }
             column.appendChild(block);
@@ -139,6 +209,8 @@ function rainbowMode (){
     currentColor = color;
 }
 
+
 window.onload = () => {
     createGrid(DEFAULT_GRID_SIZE);
+    setPanelWidth();
 }

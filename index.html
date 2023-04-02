@@ -18,45 +18,52 @@
   <body>
     <header></header>
     <div class="container">
-      <div class="panel">
+      <div class="panel" id="panel">
         <h1>Etch-A-Sketch</h1>
         <div class="main">
-          <div class="outside">
+          <div class="outside" id="outside">
             <div class="canvas" id="canvas"></div>
           </div>
           <div class="controls">
-            <div class="element">
+            <div id="screen">
+              <p
+                id="modeInf"
+                style="text-align: center; display: none; font-size: 1.2rem"
+              >
+                f
+              </p>
+              <div class="element">
               <input
                 id="colorPick"
                 name="colorPick"
                 type="color"
                 value="rgb(0,0,0)"
               />
-              <label for="colorPick">Color</label>
+              <label for = "colorPick" style="font-size: 1.2rem;">Pick a color</label>
+              </div>
+              <div class="element">
+                    <input
+                    oninput="showVal(this.value)"
+                    value="16"
+                    id="gridsize"
+                    name="gridsize"
+                    type="range"
+                    min="32"
+                    max="128"
+                    step="32"
+                    />
+                    <label for="gridsize"
+                    >Number of squares: <span id="squareNum">32x18</span></label
+                    >
+                </div>
+              </div>
+              <div class="buttons">
+                <button class="control-btn" id="colorBtn">Color</button>
+                <button class="control-btn" id="rainbow">Rainbow</button>
+                <button class="control-btn" id="gridPick">Grid Size</button>
+                <button class="control-btn" id="reset">Reset</button>
+              </div>
             </div>
-            <div class="element">
-              <input
-                oninput="showVal(this.value)"
-                value="16"
-                id="gridsize"
-                name="gridsize"
-                type="range"
-                min="16"
-                max="96"
-                step="16"
-              />
-              <label for="gridsize"
-                >Number of squares: <span id="squareNum">16x16</span></label
-              >
-              <p
-                id="modeInf"
-                style="text-align: center; margin-bottom: 20px; opacity: 0"
-              >
-                f
-              </p>
-            </div>
-            <button class="control-btn" id="rainbow">Rainbow</button>
-            <button class="control-btn" id="reset">Reset</button>
           </div>
         </div>
       </div>
@@ -64,6 +71,6 @@
     <footer>
       <em>Made by Nepee </em>
     </footer>
-    <script src="sketch.js"></script>
+    <script  src="sketch.js"></script>
   </body>
 </html>
