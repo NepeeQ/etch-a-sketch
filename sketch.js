@@ -14,14 +14,13 @@ const screen = document.querySelector("#screen");
 const DEFAULT_GRID_SIZE = 32; //Vertical
 const DEFAULT_BLOCK_SIZE = 15;
 
-
-
 //Setting changable default 
 let currentColor = "black";
 let rainbowSet = false;
 let mousePressed = false;
 
-const menuStates = ['colorBtn', 'rainbow', 'gridPick', 'reset']
+//Setting menu states and applying default
+const menuStates = ['colorBtn', 'rainbow', 'gridPick']
 let currentMenuState = "colorBtn";
 
 //Changing menu states
@@ -42,7 +41,6 @@ for (let i = 0; i < buttons.length; i++) {
 }
 
 //Applying menu change
-
 function menuChange(){
     if (currentMenuState == menuStates[0])
     {
@@ -63,6 +61,7 @@ function menuChange(){
         parentDiv.style.display = "flex";
     }
 }
+
 
 function clearMenu()
 {
@@ -85,7 +84,7 @@ function setPanelWidth()
     panel.style.width = (outside.offsetWidth + 20) + "px" ;
 }
 
-
+//Function for adding multicolor description about turning On rainbow mode
 function rainbowModeOn()
 {
     rainbowSet = true;
@@ -108,6 +107,7 @@ function rainbowModeOn()
     modeInfo.style.opacity = "100%";
 } 
 
+//Function for changing the drawing color
 colorPick.addEventListener("change", function()
 {
     currentColor = colorPick.value;
@@ -115,6 +115,7 @@ colorPick.addEventListener("change", function()
     rainbowSet = false;
 })
 
+//Function for clearing the drawing
 resetButton.addEventListener("click", function(){
     const blocks = document.querySelectorAll(".block");
     for (let i = 0; i < blocks.length; i++) {
@@ -123,20 +124,21 @@ resetButton.addEventListener("click", function(){
 })
 
 
-
+//Function for changing the grid and info about current state of grid
 function showVal(val){
     sliderLabel.textContent = val + "x" + (val * 9 / 16);
     clearGrid();
     createGrid(val);
 }
 
+//Function for clearing the whole grid (in order to build a new one)
 function clearGrid()
 {
     canvas.innerHTML = "";
 }
 
 
-
+//Function for creating the grid
 function createGrid(num)
 {
     for (let i = 0; i < num; i++)
@@ -177,11 +179,13 @@ function createGrid(num)
     }
 }
 
+//Function to change state and stop drawing on leaving the mouse button
 function deactivate()
 {
     mousePressed = false;
 }
 
+//Function for applting the color to current grid block with current mode
 function draw(e)
 {
     if(e.type === "mousedown" )
@@ -199,7 +203,7 @@ function draw(e)
 
 }
 
-
+//Function for changing the current color to make rainbow-like drawing
 function rainbowMode (){
     let color = "#"
     for (let i = 0; i < 6; i++)
@@ -209,7 +213,7 @@ function rainbowMode (){
     currentColor = color;
 }
 
-
+//Creating grid and outside panel on page load
 window.onload = () => {
     createGrid(DEFAULT_GRID_SIZE);
     setPanelWidth();
